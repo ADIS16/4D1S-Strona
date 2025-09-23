@@ -1,11 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>4D1S | Strona Główna</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .logo img {
+      max-width: 250px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #a855f7;
+      text-shadow: 0 0 15px #9333ea;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #cfcfcf;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+      color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .btn-kick {
+      background: #52ff52;
+    }
+
+    .btn-kick:hover {
+      background: #3ecf3e;
+      transform: scale(1.05);
+    }
+
+    .btn-discord {
+      background: #5865F2;
+    }
+
+    .btn-discord:hover {
+      background: #404EED;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-  
+  <div class="container">
+    <div class="logo">
+      <img src="4D1S.png" alt="4D1S Logo">
+    </div>
+    <h1>Witaj na oficjalnej stronie 4D1S</h1>
+    <p>Dołącz do naszej społeczności i oglądaj streamy na Kicku!</p>
+
+    <div class="buttons">
+      <a href="https://kick.com/4d1s" target="_blank" class="btn btn-kick">🎥 Kick</a>
+      <a href="https://discord.gg/fxJn5gxCEm" target="_blank" class="btn btn-discord">💬 Discord</a>
+    </div>
+  </div>
 </body>
 </html>
