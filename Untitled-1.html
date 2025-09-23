@@ -8,10 +8,9 @@
     body {
       margin: 0;
       padding: 0;
-      background: #0a0a0a;
-      font-family: 'Arial', sans-serif;
-      color: white;
-      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a, #1a0f2e 60%, #2d0c4a);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f0f0f0;
     }
 
     .container {
@@ -20,64 +19,107 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 20px;
+      text-align: center;
+      padding: 40px 20px;
     }
 
     .logo img {
-      max-width: 250px;
+      max-width: 180px;
       margin-bottom: 20px;
+      filter: drop-shadow(0 0 15px #9333ea);
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-size: 2.8rem;
+      margin-bottom: 15px;
       color: #a855f7;
-      text-shadow: 0 0 15px #9333ea;
+      text-shadow: 0 0 20px #9333ea;
+      animation: fadeInDown 1s ease-in-out;
     }
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #cfcfcf;
+      margin-bottom: 35px;
+      color: #d4d4d4;
+      max-width: 700px;
+      line-height: 1.6;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .buttons {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
     }
 
     .btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      padding: 14px 28px;
+      font-size: 1.1rem;
       font-weight: bold;
       border-radius: 12px;
       cursor: pointer;
       text-decoration: none;
       transition: 0.3s;
       color: white;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
-    .btn-kick {
-      background: #52ff52;
+    .btn-kick { background: #52ff52; }
+    .btn-kick:hover { background: #3ecf3e; transform: translateY(-3px) scale(1.05); }
+
+    .btn-discord { background: #5865F2; }
+    .btn-discord:hover { background: #404EED; transform: translateY(-3px) scale(1.05); }
+
+    .btn-tipply { background: #ff9800; }
+    .btn-tipply:hover { background: #e68900; transform: translateY(-3px) scale(1.05); }
+
+    .info-section {
+      background: rgba(20, 20, 20, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeInUp 1.5s ease-in-out;
     }
 
-    .btn-kick:hover {
-      background: #3ecf3e;
-      transform: scale(1.05);
+    .info-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
     }
 
-    .btn-discord {
-      background: #5865F2;
+    .info-section p {
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.6;
     }
 
-    .btn-discord:hover {
-      background: #404EED;
-      transform: scale(1.05);
+    footer {
+      margin-top: 50px;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Animacje */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -87,13 +129,25 @@
       <img src="4D1S.png" alt="4D1S Logo">
     </div>
     <h1>Witaj na oficjalnej stronie 4D1S</h1>
-    <p>Dołącz do naszej społeczności i oglądaj streamy na Kicku!</p>
+    <p>Dołącz do naszej społeczności, oglądaj streamy na Kicku i wspieraj rozwój projektu. 
+       Znajdziesz tu najważniejsze linki i informacje o tym, co robimy.</p>
 
     <div class="buttons">
-      <a href="https://kick.com/4d1s" target="_blank" class="btn btn-kick">🎥 Kick</a>
-      <a href="https://discord.gg/fxJn5gxCEm" target="_blank" class="btn btn-discord">💬 Discord</a>
-      <a href="https://tipply.pl/@4D1S" target="_blank" class="btn btn-discord">💲 Tipply</a>
+      <a href="https://kick.com/4d1s" target="_blank" class="btn btn-kick">🎥 Oglądaj na Kick</a>
+      <a href="https://discord.gg/fxJn5gxCEm" target="_blank" class="btn btn-discord">💬 Dołącz na Discord</a>
+      <a href="https://tipply.pl/@4D1S" target="_blank" class="btn btn-tipply">💲 Wesprzyj na Tipply</a>
+    </div>
+
+    <div class="info-section">
+      <h2>ℹ️ O nas</h2>
+      <p>4D1S to projekt stworzony dla społeczności gamerów i widzów. Stawiamy na dobrą zabawę, 
+         unikalny content i aktywną interakcję z widzami. 
+         Dołącz do nas, aby być częścią czegoś wyjątkowego!</p>
     </div>
   </div>
+
+  <footer>
+    © 2025 4D1S – Wszystkie prawa zastrzeżone.
+  </footer>
 </body>
 </html>
