@@ -3,242 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>4D1S | Strona Główna</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>4D1S | Blog & Aktualności</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0a0a0a, #1a0f2e 60%, #2d0c4a);
-      color: #f0f0f0;
-      scroll-behavior: smooth;
+      font-family: 'Inter', sans-serif;
+      background: #0b0b0f;
+      color: #e5e5e5;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* === NAWIGACJA === */
-    nav {
-      position: fixed;
+    /* === NAVBAR === */
+    header {
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(15, 15, 20, 0.85);
-      backdrop-filter: blur(10px);
-      padding: 15px 0;
+      background: rgba(15, 15, 20, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 15px 40px;
       display: flex;
-      justify-content: center;
-      gap: 40px;
+      justify-content: space-between;
+      align-items: center;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #a855f7;
+      margin: 0;
     }
     nav a {
       color: #fff;
       text-decoration: none;
+      margin-left: 25px;
       font-weight: 600;
-      font-size: 1rem;
-      position: relative;
       transition: 0.3s;
-    }
-    nav a::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: #a855f7;
-      transition: width 0.3s;
     }
     nav a:hover {
-      color: #a855f7;
-    }
-    nav a:hover::after {
-      width: 100%;
+      color: #00e5ff;
     }
 
-    /* === SEKCJE === */
-    section {
-      min-height: 100vh;
-      padding: 120px 20px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    /* === LAYOUT === */
+    main {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 40px;
+      padding: 40px 60px;
+      flex: 1;
     }
 
-    .logo img {
-      max-width: 200px;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 20px #9333ea);
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    h1, h2 {
-      margin-bottom: 20px;
-    }
-    h1 { font-size: 3rem; color: #a855f7; text-shadow: 0 0 25px #9333ea; }
-    h2 { font-size: 2.2rem; color: #00e5ff; text-shadow: 0 0 15px #00cfe5; }
-
-    p {
-      font-size: 1.1rem;
-      color: #d4d4d4;
-      max-width: 800px;
-      line-height: 1.7;
-    }
-
-    /* === PRZYCISKI === */
-    .buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    .btn {
-      padding: 14px 30px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
-      color: white;
-      background-size: 200% auto;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .btn-kick { background: linear-gradient(45deg, #52ff52, #3ecf3e); }
-    .btn-discord { background: linear-gradient(45deg, #5865F2, #404EED); }
-    .btn-tipply { background: linear-gradient(45deg, #ff9800, #e68900); }
-    .btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      filter: brightness(1.1);
-    }
-
-    /* === WPISY (GLASSMORPHISM) === */
+    /* === POSTS === */
     .posts {
-      max-width: 950px;
-      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 25px;
-      margin-top: 30px;
     }
     .post {
-      background: rgba(30, 30, 40, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      background: #141421;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
       padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-      text-align: left;
-      animation: fadeInUp 1s ease-in-out;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .post:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(168,85,247,0.7);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
     }
-    .post h3 {
-      margin: 0 0 12px;
-      color: #a855f7;
+    .post h2 {
+      margin: 0 0 10px;
       font-size: 1.4rem;
+      color: #a855f7;
     }
     .post .date {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #aaa;
-      display: block;
       margin-bottom: 12px;
+      display: block;
     }
     .post p {
-      font-size: 1rem;
-      color: #ddd;
-      line-height: 1.6;
+      margin-bottom: 15px;
     }
-    .post a {
+    .post a.read-more {
       color: #00e5ff;
+      font-weight: 600;
       text-decoration: none;
       transition: 0.3s;
     }
-    .post a:hover {
+    .post a.read-more:hover {
       color: #a855f7;
     }
 
-    footer {
-      padding: 25px;
-      font-size: 0.9rem;
-      color: #aaa;
-      background: rgba(10,10,15,0.9);
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
+    /* === SIDEBAR === */
+    aside {
+      background: #141421;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 20px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+    aside h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+    .sidebar-links a {
+      display: block;
+      background: #1e1e2e;
+      padding: 12px 15px;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .sidebar-links a:hover {
+      background: #2b2b3d;
+      color: #a855f7;
     }
 
-    /* === ANIMACJE === */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* === FOOTER === */
+    footer {
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: #0f0f15;
     }
   </style>
 </head>
 <body>
-  <!-- NAWIGACJA -->
-  <nav>
-    <a href="#home">🏠 Home</a>
-    <a href="#informacje">📰 Informacje</a>
-    <a href="#onas">ℹ️ O nas</a>
-    <a href="#kontakt">📩 Kontakt</a>
-  </nav>
+  <header>
+    <h1>4D1S</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#posts">Aktualności</a>
+      <a href="#about">O nas</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+  </header>
 
-  <!-- HOME -->
-  <section id="home">
-    <div class="logo">
-      <img src="4D1S.png" alt="4D1S Logo">
-    </div>
-    <h1>Witaj na oficjalnej stronie 4D1S</h1>
-    <p>Dołącz do naszej społeczności, oglądaj streamy na Kicku i wspieraj rozwój projektu.</p>
-    <div class="buttons">
-      <a href="https://kick.com/4d1s" target="_blank" class="btn btn-kick">🎥 Oglądaj na Kick</a>
-      <a href="https://discord.gg/fxJn5gxCEm" target="_blank" class="btn btn-discord">💬 Discord</a>
-      <a href="https://tipply.pl/@4D1S" target="_blank" class="btn btn-tipply">💲 Wesprzyj</a>
-    </div>
-  </section>
-
-  <!-- INFORMACJE -->
-  <section id="informacje">
-    <h2>📰 Aktualności & Informacje</h2>
-    <div class="posts">
+  <main>
+    <!-- POSTS -->
+    <div class="posts" id="posts">
       <div class="post">
-        <h3>🚀 Start strony 4D1S</h3>
+        <h2>🚀 Start strony 4D1S</h2>
         <span class="date">23.09.2025</span>
-        <p>Oficjalnie ruszyła nasza strona internetowa! 🔥  
-           Tutaj znajdziesz wszystkie ważne informacje i aktualizacje.  
-           Dołącz do naszego <a href="https://discord.gg/fxJn5gxCEm" target="_blank">Discorda</a> i bądź na bieżąco!</p>
+        <p>Oficjalnie uruchomiliśmy stronę internetową 4D1S! 🔥  
+        Tutaj znajdziesz wszystkie ważne informacje, aktualizacje i ogłoszenia.</p>
+        <a href="#" class="read-more">Czytaj więcej →</a>
       </div>
       <div class="post">
-        <h3>🎉 Nowe funkcje na serwerze</h3>
+        <h2>🎉 Nowe eventy na serwerze</h2>
         <span class="date">22.09.2025</span>
-        <p>Dodaliśmy nowe eventy i system nagród. Więcej informacji znajdziesz na  
-           <a href="https://kick.com/4d1s" target="_blank">streamach</a>.</p>
+        <p>Dodaliśmy nowe eventy, system nagród oraz dodatkowe aktywności.  
+        Więcej szczegółów znajdziesz na naszych streamach i Discordzie.</p>
+        <a href="#" class="read-more">Czytaj więcej →</a>
       </div>
     </div>
-  </section>
 
-  <!-- O NAS -->
-  <section id="onas">
-    <h2>ℹ️ O nas</h2>
-    <p>4D1S to projekt stworzony dla społeczności gamerów i widzów.  
-       Stawiamy na dobrą zabawę, unikalny content i aktywną interakcję.  
-       Dołącz do nas i bądź częścią czegoś wyjątkowego!</p>
-  </section>
-
-  <!-- KONTAKT -->
-  <section id="kontakt">
-    <h2>📩 Kontakt</h2>
-    <p>Najlepszym miejscem do kontaktu jest nasz <a href="https://discord.gg/fxJn5gxCEm" target="_blank">Discord</a>.  
-       Możesz też wesprzeć nas na <a href="https://tipply.pl/@4D1S" target="_blank">Tipply</a>.</p>
-  </section>
+    <!-- SIDEBAR -->
+    <aside>
+      <h3>🔗 Szybkie linki</h3>
+      <div class="sidebar-links">
+        <a href="https://kick.com/4d1s" target="_blank">🎥 Oglądaj na Kick</a>
+        <a href="https://discord.gg/fxJn5gxCEm" target="_blank">💬 Dołącz na Discord</a>
+        <a href="https://tipply.pl/@4D1S" target="_blank">💲 Wesprzyj na Tipply</a>
+      </div>
+    </aside>
+  </main>
 
   <footer>
     © 2025 4D1S – Wszystkie prawa zastrzeżone.
