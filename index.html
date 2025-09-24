@@ -1,289 +1,139 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>4D1S — Blog & Aktualności</title>
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg:#0b0b0f;
-      --card:#141421;
+      --bg:#0a0a0f;
+      --card:#151520;
       --muted:#9aa7b1;
-      --accent-purple:#a855f7;
-      --accent-cyan:#00e5ff;
-      --tipply:#ff9800;
-      --discord:#5865F2;
-      --kick:#52ff52;
-      --header-h:72px;
+      --accent:#00e5ff;
+      --accent2:#a855f7;
+      --radius:16px;
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial; background:linear-gradient(180deg,#070709 0%, #111023 60%); color:#e9eef0; -webkit-font-smoothing:antialiased;}
-    a{color:var(--accent-cyan);text-decoration:none}
+    body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:#e9eef0;line-height:1.6;}
+    a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-
-    /* HEADER / NAV */
+    
     header{
-      position:sticky;top:0;left:0;right:0;height:var(--header-h);
-      background:rgba(6,6,10,0.78);backdrop-filter: blur(8px);
-      display:flex;align-items:center;justify-content:space-between;padding:12px 28px;
-      border-bottom:1px solid rgba(255,255,255,0.03);z-index:1100;
+      position:sticky;top:0;z-index:1000;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:16px 32px;background:rgba(10,10,15,0.8);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.05);
     }
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:46px;display:block}
-    .brand .title{font-weight:700;color:var(--accent-purple);font-size:18px;letter-spacing:0.2px}
-    nav.main{display:flex;gap:18px;align-items:center}
-    nav.main a{color:#eaf2f6;font-weight:600;padding:8px 10px;border-radius:8px;transition:all .18s}
-    nav.main a:hover{color:var(--accent-purple);background:rgba(168,85,247,0.06)}
-    .top-actions{display:flex;gap:10px;align-items:center}
-    .btn-mini{padding:8px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700;color:#071017}
-    .btn-tipply{background:var(--tipply)}
-    .btn-discord{background:var(--discord);color:#fff}
-    .btn-tipply:hover,.btn-discord:hover{transform:translateY(-2px);filter:brightness(.98)}
-
-    /* LAYOUT */
-    main{
-      max-width:1180px;margin:26px auto;padding:18px;display:grid;grid-template-columns: 2.2fr 1fr;gap:28px;
-      align-items:start;
-    }
-
-    /* HERO / LEAD */
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--accent2);font-size:20px}
+    nav{display:flex;gap:20px}
+    nav a{font-weight:600;color:#fff;padding:8px 12px;border-radius:8px;transition:.2s}
+    nav a:hover{background:rgba(255,255,255,0.05);color:var(--accent)}
+    .actions{display:flex;gap:12px}
+    .btn{padding:8px 14px;border-radius:8px;font-weight:700;cursor:pointer;border:0}
+    .btn-discord{background:#5865F2;color:#fff}
+    .btn-tipply{background:#ff9800;color:#111}
+    
+    /* HERO */
     .hero{
-      grid-column: 1 / -1;
-      display:flex;gap:28px;align-items:center;padding:28px;border-radius:14px;
-      background:linear-gradient(180deg, rgba(20,16,28,0.3), rgba(12,10,16,0.4));
-      border:1px solid rgba(255,255,255,0.02);backdrop-filter: blur(6px);
+      position:relative;overflow:hidden;
+      height:300px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,rgba(168,85,247,0.3),rgba(0,229,255,0.2)),url('https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=1200&q=60') center/cover;
+      border-bottom:1px solid rgba(255,255,255,0.05);
     }
-    .hero .left{flex:1;text-align:left;padding:6px 12px}
-    .hero h1{margin:0;font-size:28px;color:var(--accent-purple)}
-    .hero p{margin:8px 0;color:var(--muted);max-width:740px}
-    .hero .cta{margin-top:10px;display:flex;gap:12px}
-    .cta a{display:inline-block;padding:10px 16px;border-radius:10px;font-weight:700;color:#071017}
-    .cta .kick{background:linear-gradient(90deg,var(--kick),#37c937)}
-    .cta .discord{background:linear-gradient(90deg,var(--discord),#404EED)}
-    .cta .tipply{background:linear-gradient(90deg,var(--tipply),#e68900)}
-
-    /* POSTS AREA */
-    .content{
-      display:flex;flex-direction:column;gap:18px;
-    }
-    .posts{display:flex;flex-direction:column;gap:18px}
+    .hero h1{font-size:36px;color:#fff;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
+    
+    main{max-width:1200px;margin:auto;padding:32px;display:grid;grid-template-columns:3fr 1fr;gap:32px}
+    
+    /* POSTS GRID */
+    .posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
     .post{
-      background:linear-gradient(180deg, rgba(22,22,30,0.55), rgba(12,12,16,0.35));
-      border:1px solid rgba(255,255,255,0.03);
-      padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(6,6,10,0.6);
-      transform:translateY(16px);opacity:0;transition:all .55s cubic-bezier(.2,.9,.2,1);
+      background:var(--card);border-radius:var(--radius);
+      padding:20px;display:flex;flex-direction:column;justify-content:space-between;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      transition:transform .25s, box-shadow .25s;
     }
-    .post.visible{transform:none;opacity:1}
-    .post h2{margin:0 0 6px;font-size:18px;color:var(--accent-purple)}
-    .post .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;margin-bottom:8px}
-    .post p{color:#dbe7ea;margin:0 0 12px}
-    .post .links{display:flex;gap:10px;flex-wrap:wrap}
-    .pill{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.03);font-weight:700;font-size:13px;border:1px solid rgba(255,255,255,0.02)}
-    .read-more{color:var(--accent-cyan);font-weight:700;text-decoration:none;margin-left:6px}
-
+    .post:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(0,0,0,0.6)}
+    .post h2{font-size:18px;margin:0 0 8px;color:var(--accent2)}
+    .post .meta{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .post p{flex:1;color:#dfe8eb;margin:0 0 12px}
+    .post .link{font-weight:700;color:var(--accent)}
+    
     /* SIDEBAR */
-    aside{
-      position:sticky;top:calc(var(--header-h) + 18px);
-      align-self:start;background:linear-gradient(180deg, rgba(18,18,24,0.6), rgba(10,10,14,0.45));
-      border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03);
-      box-shadow:0 10px 30px rgba(6,6,10,0.6);
+    aside{display:flex;flex-direction:column;gap:20px}
+    .side-box{
+      background:var(--card);padding:16px;border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.4)
     }
-    .sidebar h3{margin:0 0 12px;color:var(--accent-cyan)}
-    .sidebar .sidebar-btn{
-      display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;border:0;background:#0f1220;color:#fff;width:100%;
-      cursor:pointer;font-weight:700;margin-bottom:10px;text-align:left;transition:transform .15s, box-shadow .15s;
-    }
-    .sidebar .sidebar-btn:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,0.6)}
-    .sidebar .sidebar-btn .icon{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-weight:900}
-    .icon-kick{background:var(--kick);color:#07230a}
-    .icon-discord{background:var(--discord);color:white}
-    .icon-tipply{background:var(--tipply);color:#071017}
-
-    .sidebar .small{font-size:13px;color:var(--muted);margin-top:8px}
-
-    /* FOOTER */
-    footer{grid-column:1/-1;padding:20px;text-align:center;color:#98a7ad;background:transparent;border-top:1px solid rgba(255,255,255,0.02)}
-
-    /* RESPONSIVE */
-    @media (max-width:1000px){
-      main{grid-template-columns:1fr; padding:20px}
-      aside{position:relative;top:auto}
-      .hero{flex-direction:column}
-    }
-
-    @media (max-width:520px){
-      header{padding:10px}
-      .brand .title{font-size:15px}
-      .post h2{font-size:16px}
+    .side-box h3{margin:0 0 12px;color:var(--accent)}
+    .side-link{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.03);cursor:pointer;font-weight:600;color:#fff;transition:.2s}
+    .side-link:hover{background:rgba(255,255,255,0.08);color:var(--accent)}
+    
+    footer{text-align:center;padding:20px;color:var(--muted);font-size:14px;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
+    
+    @media(max-width:900px){
+      main{grid-template-columns:1fr}
+      .hero{height:220px}
+      .hero h1{font-size:26px;text-align:center;padding:0 16px}
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="brand">
-      <img src="4D1S.png" alt="4D1S logo" onerror="this.style.display='none'">
-      <div class="title">4D1S</div>
-    </div>
-
-    <nav class="main" aria-label="główna nawigacja">
-      <a href="#home" data-scroll>Home</a>
-      <a href="#informacje" data-scroll>Informacje</a>
-      <a href="#onas" data-scroll>O nas</a>
-      <a href="#kontakt" data-scroll>Kontakt</a>
+    <div class="brand">4D1S</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#informacje">Informacje</a>
+      <a href="#onas">O nas</a>
+      <a href="#kontakt">Kontakt</a>
     </nav>
-
-    <div class="top-actions">
-      <button class="btn-mini btn-discord" title="Discord" id="topDiscord">Discord</button>
-      <button class="btn-mini btn-tipply" title="Wesprzyj" id="topTipply">Wesprzyj</button>
+    <div class="actions">
+      <button class="btn btn-discord" onclick="window.open('https://discord.gg/fxJn5gxCEm','_blank')">Discord</button>
+      <button class="btn btn-tipply" onclick="window.open('https://tipply.pl/@4D1S','_blank')">Wesprzyj</button>
     </div>
   </header>
-
+  
+  <section class="hero" id="home">
+    <h1>Oficjalne aktualności 4D1S</h1>
+  </section>
+  
   <main>
-    <!-- HERO / LEAD -->
-    <section class="hero" id="home" aria-labelledby="lead-title">
-      <div class="left">
-        <h1 id="lead-title">Witaj — 4D1S</h1>
-        <p>Oficjalne miejsce, gdzie publikujemy aktualności, ogłoszenia i informacje o streamach. Wszystko w jednym, czytelnym miejscu — idealne do szybkiego przeglądania na telefonie i desktopie.</p>
-
-        <div class="cta">
-          <a class="kick" href="https://kick.com/4d1s" target="_blank" rel="noopener noreferrer">🎥 Oglądaj na Kick</a>
-          <a class="discord" href="https://discord.gg/fxJn5gxCEm" target="_blank" rel="noopener noreferrer">💬 Dołącz na Discord</a>
-          <a class="tipply" href="https://tipply.pl/@4D1S" target="_blank" rel="noopener noreferrer">💲 Wesprzyj</a>
-        </div>
+    <section>
+      <h2 id="informacje">📰 Aktualności</h2>
+      <div class="posts">
+        <article class="post">
+          <h2>🚀 Start nowej strony</h2>
+          <div class="meta">24.09.2025 • Nowości</div>
+          <p>Wystartowała nowa wersja portalu 4D1S. Wszystkie ogłoszenia, wpisy i aktualności w jednym miejscu — teraz bardziej przejrzyście.</p>
+          <a class="link" href="https://discord.gg/fxJn5gxCEm" target="_blank">Dołącz na Discord →</a>
+        </article>
+        
+        <article class="post">
+          <h2>🎉 Event społeczności</h2>
+          <div class="meta">22.09.2025 • Event</div>
+          <p>W ten weekend gramy wspólnie z widzami! Sprawdź harmonogram i zapisz się na Discordzie. Będzie sporo nagród.</p>
+          <a class="link" href="https://kick.com/4d1s" target="_blank">Oglądaj na Kick →</a>
+        </article>
       </div>
     </section>
-
-    <!-- LEFT: content (posts) -->
-    <section class="content" id="informacje" aria-labelledby="info-title">
-      <h2 id="info-title">📰 Aktualności</h2>
-
-      <div class="posts" id="postsList">
-        <!-- 
-          ✨ Dodawaj nowe wpisy tak (w VS Code kopiujesz cały blok poniżej i wklejasz NA GÓRĘ):
-          <article class="post">
-            <h2>🔥 Tytuł wpisu</h2>
-            <div class="meta"><time datetime="2025-09-24">24.09.2025</time> • <span>Krótki meta tekst</span></div>
-            <p>Treść wpisu — śmiało używaj <a href="#">linków</a> i formatowania. Wklejaj screeny jako linki lub hostuj obrazki i wstaw &lt;img&gt; jeśli potrzebujesz.</p>
-            <div class="links"><a class="pill" href="#">Szczegóły</a></div>
-          </article>
-        -->
-
-        <!-- Example posts (przykładowe) -->
-        <article class="post">
-          <h2>🚀 Start strony 4D1S</h2>
-          <div class="meta"><time datetime="2025-09-23">23.09.2025</time> • <span>Pierwsza wersja serwisu</span></div>
-          <p>Oficjalnie ruszyła nasza strona! Tutaj będziemy publikować ogłoszenia, aktualizacje oraz linki do streamów. Dołącz na Discord, aby być na bieżąco.</p>
-          <div class="links"><a class="read-more" href="https://discord.gg/fxJn5gxCEm" target="_blank" rel="noopener noreferrer">Dołącz na Discord →</a></div>
-        </article>
-
-        <article class="post">
-          <h2>🎉 Nowe funkcje na streamie</h2>
-          <div class="meta"><time datetime="2025-09-22">22.09.2025</time> • <span>Eventy i nagrody</span></div>
-          <p>Wprowadziliśmy program nagród i regularne eventy. Sprawdź kalendarz na streamie lub napisz na Discordzie, jeśli chcesz wziąć udział.</p>
-          <div class="links"><a class="read-more" href="https://kick.com/4d1s" target="_blank" rel="noopener noreferrer">Oglądaj na Kick →</a></div>
-        </article>
-
+    
+    <aside>
+      <div class="side-box">
+        <h3>Szybkie linki</h3>
+        <div class="side-link" onclick="window.open('https://kick.com/4d1s','_blank')">🎥 Kick</div>
+        <div class="side-link" onclick="window.open('https://discord.gg/fxJn5gxCEm','_blank')">💬 Discord</div>
+        <div class="side-link" onclick="window.open('https://tipply.pl/@4D1S','_blank')">💲 Tipply</div>
       </div>
-    </section>
-
-    <!-- RIGHT: sidebar -->
-    <aside class="sidebar" aria-label="panel boczny">
-      <h3>Szybkie linki</h3>
-
-      <!-- Sidebar buttons (naprawione — działają) -->
-      <button class="sidebar-btn" data-href="https://kick.com/4d1s" aria-label="Oglądaj na Kick">
-        <span class="icon icon-kick">K</span>
-        <div>
-          <div style="font-weight:800">Kick</div>
-          <div style="font-size:13px;color:var(--muted)">Oglądaj transmisje</div>
-        </div>
-      </button>
-
-      <button class="sidebar-btn" data-href="https://discord.gg/fxJn5gxCEm" aria-label="Dołącz na Discord">
-        <span class="icon icon-discord">D</span>
-        <div>
-          <div style="font-weight:800">Discord</div>
-          <div style="font-size:13px;color:var(--muted)">Wsparcie i społeczność</div>
-        </div>
-      </button>
-
-      <button class="sidebar-btn" data-href="https://tipply.pl/@4D1S" aria-label="Wesprzyj na Tipply">
-        <span class="icon icon-tipply">T</span>
-        <div>
-          <div style="font-weight:800">Tipply</div>
-          <div style="font-size:13px;color:var(--muted)">Wesprzyj projekt</div>
-        </div>
-      </button>
-
-      <div class="small">Masz pomysł na wpis? Dodaj go w VS Code — kopiuj szablon wpisu i wklej na górę listy wpisów.</div>
+      
+      <div class="side-box">
+        <h3>O nas</h3>
+        <p>Zespół 4D1S tworzy transmisje, eventy i miejsce do wspólnej zabawy. Dołącz do społeczności!</p>
+      </div>
     </aside>
-
   </main>
-
+  
   <footer id="kontakt">
-    © 2025 4D1S — Kontakt: <a href="https://discord.gg/fxJn5gxCEm" target="_blank" rel="noopener noreferrer">Discord</a> · <a href="https://tipply.pl/@4D1S" target="_blank" rel="noopener noreferrer">Tipply</a>
+    © 2025 4D1S — Kontakt: <a href="https://discord.gg/fxJn5gxCEm" target="_blank">Discord</a>
   </footer>
-
-  <script>
-    // Smooth scroll that accounts for header height
-    (function(){
-      const header = document.querySelector('header');
-      const headerH = () => header.offsetHeight || parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 72;
-
-      document.querySelectorAll('a[data-scroll], nav.main a').forEach(link=>{
-        // mark links that are internal anchors
-        const href = link.getAttribute('href') || '';
-        if(!href.startsWith('#')) return;
-        link.setAttribute('data-scroll', 'true');
-        link.addEventListener('click', function(e){
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if(!target) return;
-          const top = window.scrollY + target.getBoundingClientRect().top - headerH() - 12;
-          window.scrollTo({top, behavior:'smooth'});
-        });
-      });
-
-      // handle initial hash on load
-      window.addEventListener('load', ()=>{
-        if(location.hash){
-          const el = document.querySelector(location.hash);
-          if(el){
-            setTimeout(()=> {
-              const top = window.scrollY + el.getBoundingClientRect().top - headerH() - 12;
-              window.scrollTo({top,behavior:'smooth'});
-            }, 80);
-          }
-        }
-      });
-
-      // sidebar buttons open new tab (fixed behavior)
-      document.querySelectorAll('.sidebar-btn').forEach(btn=>{
-        btn.addEventListener('click', ()=> {
-          const url = btn.dataset.href;
-          if(!url) return;
-          window.open(url, '_blank', 'noopener');
-        });
-      });
-
-      // top action buttons
-      document.getElementById('topDiscord').addEventListener('click', ()=> window.open('https://discord.gg/fxJn5gxCEm','_blank','noopener'));
-      document.getElementById('topTipply').addEventListener('click', ()=> window.open('https://tipply.pl/@4D1S','_blank','noopener'));
-
-      // reveal posts on scroll (IntersectionObserver)
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add('visible');
-        });
-      },{threshold:0.12});
-      document.querySelectorAll('.post').forEach(p => observer.observe(p));
-    })();
-  </script>
 </body>
 </html>
